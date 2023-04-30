@@ -1,129 +1,41 @@
-package fixed_grow_stack;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Main menu
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Choose sub-menu:");
-        System.out.println("1. Fixed Stack");
-        System.out.println("2. Growing Stack");
-        System.out.println("3. Exit");
-        System.out.print("\nEnter your choice: ");
-        int choice = sc.nextInt();
+        System.out.print("Enter the first rational number (in the form a/b): ");
+        String input1 = scanner.next();
+        String[] parts1 = input1.split("/");
+        int a1 = Integer.parseInt(parts1[0]);
+        int b1 = Integer.parseInt(parts1[1]);
+        RationalNumber rational1 = new RationalNumber(a1, b1);
 
-        // Sub-menu for Fixed Stack [Fixed_stk.java]
-        if(choice == 1){
-            Fixed_stk stk = new fixed_grow_stack.Fixed_stk();
-            System.out.println("\n\nSub-menu: Fixed Stack");
-            System.out.println("Choose operation:");
-            System.out.println("1. Push Element");
-            System.out.println("2. Pop Element");
-            System.out.println("3. Peek Element");
-            System.out.println("4. Check if stack is empty");
-            System.out.println("5. Check if stack is full");
-            System.out.println("6. Clear stack");
-            System.out.println("7. Display stack");
-            System.out.println("8. Exit");
-            System.out.print("\nEnter your choice: ");
-            int choice_fix = sc.nextInt();
+        System.out.print("Enter the second rational number (in the form a/b): ");
+        String input2 = scanner.next();
+        String[] parts2 = input2.split("/");
+        int a2 = Integer.parseInt(parts2[0]);
+        int b2 = Integer.parseInt(parts2[1]);
+        RationalNumber rational2 = new RationalNumber(a2, b2);
 
-            if(choice_fix == 1){
-                System.out.print("Enter element to push: ");
-                int element_fix = sc.nextInt();
-                stk.push(element_fix);
-            }
-            else if(choice_fix == 2){
-                System.out.println("Popped element: " + stk.pop());
-            }
-            else if(choice_fix == 3){
-                System.out.println("Peeked element: " + stk.peek());
-            }
-            else if(choice_fix == 4){
-                System.out.println("Is stack empty? " + stk.isEmpty());
-            }
-            else if(choice_fix == 5){
-                System.out.println("Is stack full? " + stk.isFull());
-            }
-            else if(choice_fix == 6){
-                stk.clear();
-            }
-            else if(choice_fix == 7){
-                stk.display();
-            }
-            else if(choice_fix == 8){
-                System.exit(0);
-            }
-            else{
-                System.out.println("Invalid choice");
-            }
+        System.out.println("Addition: " + rational1.add(rational2));
+        System.out.println("Subtraction: " + rational1.subtract(rational2));
+        System.out.println("Multiplication: " + rational1.multiply(rational2));
 
+        try {
+            System.out.println("Division: " + rational1.divide(rational2));
+        } catch (ArithmeticException e){
+            System.out.println("Division by zero is not allowed.");
         }
+        System.out.println("Comparison:");
+        System.out.println(rational1 + " == " + rational2 + " : " + rational1.equals(rational2));
+        System.out.println(rational1 + " > " + rational2 + " : " + rational1.isGreaterThan(rational2));
+        System.out.println(rational1 + " < " + rational2 + " : " + rational1.isLessThan(rational2));
 
-        else if (choice == 2){
-            Growable_stk stk = new Growable_stk();
-            System.out.println("\n\nSub-menu: Growing Stack");
-            System.out.println("Choose operation:");
-            System.out.println("1. Push Element");
-            System.out.println("2. Pop Element");
-            System.out.println("3. Peek Element");
-            System.out.println("4. Check if stack is empty");
-            System.out.println("5. Check if stack is full");
-            System.out.println("6. Clear stack");
-            System.out.println("7. Display stack");
-            System.out.println("8. Exit");
-            System.out.print("\nEnter your choice: ");
-            int choice_grow = sc.nextInt();
+        System.out.println("Absolute value of " + rational1 + ": " + rational1.abs());
+        System.out.println("Absolute value of " + rational2 + ": " + rational2.abs());
 
-            if(choice_grow == 1){
-                System.out.println("Enter element to push: ");
-                int element_grow = sc.nextInt();
-                stk.push(element_grow);
-            }
-
-            else if(choice_grow == 2){
-                System.out.println("Popped element: " + stk.pop());
-            }
-
-            else if(choice_grow == 3){
-                System.out.println("Peeked element: " + stk.peek());
-            }
-
-            else if(choice_grow == 4){
-                System.out.println("Is stack empty? " + stk.isEmpty());
-            }
-
-            else if(choice_grow == 5){
-                System.out.println("Is stack full? " + stk.isFull());
-            }
-
-            else if(choice_grow == 6){
-                stk.clear();
-            }
-
-            else if(choice_grow == 7){
-                stk.display();
-            }
-
-            else if(choice_grow == 8){
-                System.exit(0);
-            }
-
-            else{
-                System.out.println("Invalid choice");
-            }
-
-
-        }
-
-        else if (choice == 3){
-            System.exit(0);
-        }
-
-        else{
-            System.out.println("Invalid choice");
-        }
-        sc.close();
+        System.out.println("Floating point representation of " + rational1 + ": " + rational1.toDouble());
+        System.out.println("Floating point representation of " + rational2 + ": " + rational2.toDouble());
     }
 }
